@@ -10,6 +10,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
 
 /**
  * Equipment aggregate root entity
@@ -28,6 +29,7 @@ public class Equipment extends AuditableAbstractAggregateRoot<Equipment> {
     /**
      * Equipment model name
      */
+    @Getter
     @NotBlank
     private String model;
 
@@ -49,8 +51,24 @@ public class Equipment extends AuditableAbstractAggregateRoot<Equipment> {
      * @param command the create equipment command
      */
     public Equipment(CreateEquipmentCommand command) {
-        this.materialSerialNumber = new MaterialSerialNumber(command.materialSerialNumber());
+        this.materialSerialNumber = new MaterialSerialNumber();
         this.model = command.model();
         this.equipmentType = EquipmentType.valueOf(command.equipmentType());
+    }
+
+    /**
+     * Get the material serial number
+     * @return the material serial number
+     */
+    public String getMaterialSerialNumber() {
+        return materialSerialNumber.materialSerialNumber();
+    }
+
+    /**
+     * Get the equipment type
+     * @return the equipment type
+     */
+    public String getEquipmentType() {
+        return equipmentType.name();
     }
 }
