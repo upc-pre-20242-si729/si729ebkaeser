@@ -17,9 +17,8 @@ public record MaterialSerialNumber(String materialSerialNumber) {
      * MaterialSerialNumber
      * @summary
      * Constructor for MaterialSerialNumber
-     * @param materialSerialNumber the material serial number
      */
-    public MaterialSerialNumber(String materialSerialNumber) {
-       this.materialSerialNumber = UUID.fromString(materialSerialNumber).toString();
+    public MaterialSerialNumber() {
+       this(UUID.randomUUID().toString());
     }
 }
