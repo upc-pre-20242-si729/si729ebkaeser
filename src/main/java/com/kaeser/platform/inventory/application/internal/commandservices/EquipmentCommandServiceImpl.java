@@ -33,10 +33,13 @@ public class EquipmentCommandServiceImpl implements EquipmentCommandService {
     /** inheritedDoc */
     @Override
     public Optional<Equipment> handle(CreateEquipmentCommand command) {
-        if (equipmentRepository.existsByMaterialSerialNumber(new MaterialSerialNumber(command.materialSerialNumber())))
+
+        var materialSerialnumber = new MaterialSerialNumber();
+
+        if (equipmentRepository.existsByMaterialSerialNumber(materialSerialnumber))
             throw new IllegalArgumentException("Equipment with the same serial number already exists");
 
-        var equipment = new Equipment(command);
+        var equipment = new Equipment(command, materialSerialnumber);
         equipmentRepository.save(equipment);
 
         return Optional.of(equipment);

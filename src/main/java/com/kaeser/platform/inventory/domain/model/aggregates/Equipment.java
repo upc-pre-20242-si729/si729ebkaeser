@@ -50,8 +50,8 @@ public class Equipment extends AuditableAbstractAggregateRoot<Equipment> {
      * Constructor
      * @param command the create equipment command
      */
-    public Equipment(CreateEquipmentCommand command) {
-        this.materialSerialNumber = new MaterialSerialNumber();
+    public Equipment(CreateEquipmentCommand command, MaterialSerialNumber materialSerialNumber) {
+        this.materialSerialNumber = materialSerialNumber;
         this.model = command.model();
         this.equipmentType = EquipmentType.valueOf(command.equipmentType());
     }

@@ -21,7 +21,6 @@ public class CreateEquipmentCommandFromResourceAssembler {
      */
     public static CreateEquipmentCommand toCommandFromResource(CreateEquipmentResource resource) {
         return new CreateEquipmentCommand(
-                UUID.randomUUID().toString(),
                 resource.model(),
                 resource.equipmentType()
         );
